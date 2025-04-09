@@ -18,13 +18,13 @@
             <div class="container-fluid d-flex align-items-center justify-content-between">
 
                 <!-- Logo a sinistra -->
-                <a class="navbar-brand mx-0" href="../index.html">
+                <a class="navbar-brand mx-0" href="Versioni_Orario.html">
                     <img src="..\Icons\Logo_IVU.png"
                          alt="Logo" width="200" height="100">
                 </a>
 
                 <!-- Menu centrale -->
-                <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul class="navbar-nav">
                         <li class="nav-item">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
@@ -74,8 +74,8 @@
                                 Gestione Dati
                             </a>
                             <ul class="dropdown-menu w-100 list-inline text-center" aria-labelledby="navbarDropdownMenuLink">
-                                <li class="list-inline-item"><a class="dropdown-item" href="#">Linee</a></li>
-                                <li class="list-inline-item"><a class="dropdown-item" href="#">Versioni orario</a></li>
+                                <li class="list-inline-item"><a class="dropdown-item" href="">Linee</a></li>
+                                <li class="list-inline-item"><a class="dropdown-item" href="Versioni_Orario.html">Versioni orario</a></li>
                             </ul>
                         </li>
 
@@ -88,7 +88,7 @@
                                 <li class="list-inline-item"><a class="dropdown-item" href="#">Hafas</a></li>
                                 <li class="list-inline-item"><a class="dropdown-item" href="#">Isa</a></li>
                                 <li class="list-inline-item"><a class="dropdown-item" href="#">IVU.pool</a></li>
-                                <li class="list-inline-item"><a class="dropdown-item" href="#">General Transit</a></li>
+                                <li class="list-inline-item"><a class="dropdown-item" href="ExportGeneralTrans.html">General Transit</a></li>
                             </ul>
                         </li>
 
@@ -110,7 +110,7 @@
     <!-- Header-->
 
 
-    <div class="filter-container">
+    <div class="container-fluid mt-16">
         <div class="row">
             <div class="col-md-6">
                 <div class="filter-section">
@@ -159,7 +159,7 @@
 
 
 
-        <div class="timeline-container">
+        <div class="container-fluid">
             <div class="table-wrapper">
                 <table class="table table-bordered">
                     <thead class="thead-light">
@@ -427,8 +427,11 @@
                     // Pulisce la lista rotte attuale
                     routesListContent.innerHTML = '';
                     // Nasconde la timeline se una nuova compagnia viene selezionata
-                    hideTimeline();
-
+                   // hideTimeline();
+                    const selectedRoute = routesListContent.querySelector('.list-box-item.selected');
+                    if (selectedRoute) {
+                        selectedRoute.classList.remove('selected');
+                    }
                     const routes = routeData[companyId] || []; // Prende le rotte o un array vuoto
 
                     if (routes.length === 0) {
@@ -450,7 +453,7 @@
                     });
 
                     // Rimuove eventuali listener precedenti e aggiunge il nuovo per le rotte
-                    // (necessario perché il contenuto è stato rigenerato)
+                    // (necessario perchï¿½ il contenuto ï¿½ stato rigenerato)
                     routesListContent.removeEventListener('click', handleRouteClick); // Rimuove vecchio listener
                     routesListContent.addEventListener('click', handleRouteClick); // Aggiunge nuovo listener
                 }
@@ -473,9 +476,9 @@
                 }
 
                 function handleCompanyClick(event) {
-                    // Trova l'elemento .list-box-item più vicino che è stato cliccato
+                    // Trova l'elemento .list-box-item piï¿½ vicino che ï¿½ stato cliccato
                     const targetItem = event.target.closest('.list-box-item');
-                    if (!targetItem) return; // Non fare nulla se il click non è su un item
+                    if (!targetItem) return; // Non fare nulla se il click non ï¿½ su un item
 
                     // Rimuovi la classe 'selected' da tutti gli elementi nella lista compagnie
                     companyListContent.querySelectorAll('.list-box-item').forEach(item => {
@@ -489,7 +492,7 @@
                 }
 
                 function handleRouteClick(event) {
-                    // Trova l'elemento .list-box-item più vicino che è stato cliccato
+                    // Trova l'elemento .list-box-item piï¿½ vicino che ï¿½ stato cliccato
                     const targetItem = event.target.closest('.list-box-item');
                     if (!targetItem || targetItem.textContent === 'Nessuna rotta trovata' || targetItem.textContent === 'Seleziona una compagnia/divisione') return; // Ignora click su messaggi o non-item
 
@@ -509,7 +512,7 @@
                     companyListContent.addEventListener('click', handleCompanyClick);
                 }
 
-                // Aggiunta funzionalità di ricerca (opzionale, base)
+                // Aggiunta funzionalitï¿½ di ricerca (opzionale, base)
                 const searchCompanyInput = document.getElementById('search-company');
                 const searchRoutesInput = document.getElementById('search-routes');
 
